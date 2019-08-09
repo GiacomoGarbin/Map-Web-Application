@@ -1,0 +1,1636 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title>MAP 4.2</title>
+	<link rel="stylesheet" href="./style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="http://www.w3schools.com/lib/w3color.js"></script>
+	<script src="./fontawesome-markers.min.js"></script>
+	<script src="https://use.fontawesome.com/02a1dd9c8d.js"></script>
+</head>
+<body>
+	<div id="controlPanel">
+		<div id="style">
+			<table id="icon">
+				<tr>
+					<td>
+						<input id="marker" type="radio" name="icon" value="marker" checked="checked" />
+						<label for="marker"><span class="fa fa-map-marker"></span>Marker</label>
+					</td>
+					<td>
+						<input id="circle" type="radio" name="icon" value="circle" />
+						<label for="circle"><span class="fa fa-circle-o"></span>Circle</label>
+					</td>
+				</tr>
+			</table>
+			<table id="variable">
+				<tr>
+					<td class="label">Variable</td>
+					<td>
+						<select name="variable">
+							<option value="ip_address" selected="selected">IP Address</option>
+							<option value="session_id">Session ID</option>
+							<option value="user_id">User ID</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+			<table id="appearance">
+				<tr class="label">
+					<td>Scale</td>
+					<td colspan="2">Color</td>
+				</tr>
+				<tr>
+					<td class="range">
+						<span class="fa fa-compress"></span>
+						<input type="range" name="scale" min="0.2" max="2" step="0.1" value="0.5" />
+						<span class="fa fa-expand"></span>
+					</td>
+					<td class="color">
+						<!-- #ec407a -->
+						<input type="color" name="minColor" value="#f5156f" />
+					</td>
+					<td class="color">
+						<!-- #673ab7 -->
+						<input type="color" name="maxColor" value="#673ab7" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="filter">
+			<table id="rangeDate">
+				<tr>
+					<td class="minDate">
+						<label>
+							<span class="fa fa-calendar"></span>
+							<input id="minDate" type="text" name="minDate" value="01/12/2015" readonly />
+						</label>
+					</td>
+					<td class="maxDate">
+						<label>
+							<span class="fa fa-calendar"></span>
+							<input id="maxDate" type="text" name="maxDate" value="31/03/2016" readonly />
+						</label>
+					</td>
+				</tr>
+				<tr class="IncExcDate">
+					<td class="incDate">
+						<input id="incDate" type="radio" name="IncExcDate" value="include" checked="checked" />
+						<label for="incDate">Include</label>
+					</td>
+					<td class="excDate">
+						<input id="excDate" type="radio" name="IncExcDate" value="exclude" />
+						<label for="excDate">Exclude</label>
+					</td>
+				</tr>
+			</table>
+			<table id="rangeTime">
+				<tr class="checkTime">
+					<td colspan="2">
+						<input id="checkTime" type="checkbox" name="checkTime" />
+						<label for="checkTime">Time Bands (one-day 24h sessions)</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="minTime">
+						<label>
+							<span class="fa fa-clock-o"></span>
+							<select id="minTime" name="minTime" disabled>
+								<option value="00:00" selected="selected">00:00</option>
+								<option value="01:00">01:00</option>
+								<option value="02:00">02:00</option>
+								<option value="03:00">03:00</option>
+								<option value="04:00">04:00</option>
+								<option value="05:00">05:00</option>
+								<option value="06:00">06:00</option>
+								<option value="07:00">07:00</option>
+								<option value="08:00">08:00</option>
+								<option value="09:00">09:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+								<option value="19:00">19:00</option>
+								<option value="20:00">20:00</option>
+								<option value="21:00">21:00</option>
+								<option value="22:00">22:00</option>
+								<option value="23:00">23:00</option>
+							</select>
+						</label>
+					</td>
+					<td class="maxTime">
+						<label>
+							<span class="fa fa-clock-o"></span>
+							<select id="maxTime" name="maxTime" disabled>
+								<option value="00:59">00:59</option>
+								<option value="01:59">01:59</option>
+								<option value="02:59">02:59</option>
+								<option value="03:59">03:59</option>
+								<option value="04:59">04:59</option>
+								<option value="05:59">05:59</option>
+								<option value="06:59">06:59</option>
+								<option value="07:59">07:59</option>
+								<option value="08:59">08:59</option>
+								<option value="09:59">09:59</option>
+								<option value="10:59">10:59</option>
+								<option value="11:59">11:59</option>
+								<option value="12:59">12:59</option>
+								<option value="13:59">13:59</option>
+								<option value="14:59">14:59</option>
+								<option value="15:59">15:59</option>
+								<option value="16:59">16:59</option>
+								<option value="17:59">17:59</option>
+								<option value="18:59">18:59</option>
+								<option value="19:59">19:59</option>
+								<option value="20:59">20:59</option>
+								<option value="21:59">21:59</option>
+								<option value="22:59">22:59</option>
+								<option value="23:59" selected="selected">23:59</option>
+							</select>
+						</label>
+					</td>
+				</tr>
+				<tr class="IncExcTime">
+					<td>
+						<input id="incTime" type="radio" name="IncExcTime" value="include" checked="checked" disabled />
+						<label for="incTime">Include</label>
+					</td>
+					<td>
+						<input id="excTime" type="radio" name="IncExcTime" value="exclude" disabled />
+						<label for="excTime">Exclude</label>
+					</td>
+				</tr>
+			</table>
+			<table id="checkVerbalizationHoliday">
+				<!--
+						<tr class="verbalization">
+								<td>
+										<select id="verbalization" name="verbalization">
+												<option value="" selected="selected">Verbalization & Not</option>
+												<option value="1">Only Verbalization</option>
+												<option value="0">Not Verbalization</option>
+										</select>
+								</td>
+						</tr>
+						<tr class="holiday">
+								<td>
+										<select id="holiday" name="holiday">
+												<option value="" selected="selected">Workday & Holiday</option>
+												<option value="0">Only Workday</option>
+												<option value="1">Only Holiday</option>
+										</select>
+								</td>
+						</tr>
+				-->
+				<tr>
+					<td class="verbalization">
+						<ul aria-label="Verbalization">
+							<li>
+								<input id="verbalizationRadioBoth" type="radio" name="verbalization" value="" checked="checked">
+								<label for="verbalizationRadioBoth">Both</label>
+							</li>
+							<li>
+								<input id="verbalizationRadioTrue" type="radio" name="verbalization" value="1">
+								<label for="verbalizationRadioTrue">True</label>
+							</li>
+							<li>
+								<input id="verbalizationRadioFalse" type="radio" name="verbalization" value="0">
+								<label for="verbalizationRadioFalse">False</label>
+							</li>
+						</ul>
+					</td>
+					<td class="holiday">
+						<ul aria-label="Workday / Holiday">
+							<li>
+								<input id="holidayRadioBoth" type="radio" name="holiday" value="" checked="checked" />
+								<label for="holidayRadioBoth">Both</label>
+							</li>
+							<li>
+								<input id="holidayRadioFalse" type="radio" name="holiday" value="0" />
+								<label for="holidayRadioFalse">Workday</label>
+							</li>
+							<li>
+								<input id="holidayRadioTrue" type="radio" name="holiday" value="1" />
+								<label for="holidayRadioTrue">Holiday</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+			<table id="userSelector">
+				<tr>
+					<td>
+						<input id="checkUserSelector" type="checkbox" name="checkUserSelector" />
+						<label><span class="fa fa-user" aria-hidden="true"></span>User Selector</label>
+					</td>
+					<td class="stat">
+						<span>(</span>
+						<span class="users">1086</span>
+						<span>/</span>
+						<span>1086</span>
+						<span>)</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="statistics">
+			<table>
+				<tr class="coordinates">
+					<td class="label">Coordinates:</td>
+					<td class="value"></td>
+					<td class="sep">/</td>
+					<td class="max"></td>
+					<td class="pct"></td>
+				</tr>
+				<tr class="ip_address">
+					<td class="label">IP Addresses:</td>
+					<td class="value"></td>
+					<td class="sep">/</td>
+					<td class="max"></td>
+					<td class="pct"></td>
+				</tr>
+				<tr class="session_id">
+					<td class="label">Sessions:</td>
+					<td class="value"></td>
+					<td class="sep">/</td>
+					<td class="max"></td>
+					<td class="pct"></td>
+				</tr>
+				<tr class="user_id">
+					<td class="label">Users:</td>
+					<td class="value"></td>
+					<td class="sep">/</td>
+					<td class="max"></td>
+					<td class="pct"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="userSelectorWindow"></div>
+	<div id="map"></div>
+	<script>
+
+		function initMap() {
+
+			/* start map */
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				center: { lat: 0, lng: 0 },
+				zoom: 2
+			});
+
+			// infowindow GLOBAL variable
+			infowindow = new google.maps.InfoWindow();
+
+			updateMarkers(map);
+			styleMarkers(map);
+
+
+			/* map data listeners */
+
+			map.data.addListener('click', function (event) {
+
+				var coordinates = event.feature.getId();
+				var position = event.feature.getGeometry().get();
+				var offset = new google.maps.Size(0, -24);
+
+				var contentString = '<div id="infowindowContent">' +
+									'<div id="contentHead">' +
+										'<h1>(lat: ' + coordinates.split(" ")[0] + ', lng: ' + coordinates.split(" ")[1] + ')</h1>' +
+										infowindowContent("head", coordinates) +
+									'</div>' +
+									'<div id="contentBody">' +
+										infowindowContent("body", coordinates) +
+									'</div>' +
+								'</div>';
+
+				infowindow.close();
+
+				infowindow.setOptions({
+					position: position,
+					content: contentString,
+					pixelOffset: offset
+				});
+
+				infowindow.open(map);
+
+
+				$('#infowindowContent').parent().parent().css("width", "654px");
+
+				$('#ip_address td').click(function () {
+					//console.log($(this).text());
+
+					if ($(this).hasClass("selected"))
+						return;
+
+					$('#ip_address .selected').removeClass("selected");
+					$(this).addClass("selected");
+
+					$('#contentBody').html(
+							infowindowContent("body", coordinates, ($(this).text() == "any") ? undefined : $(this).text())
+					);
+
+					$('#infowindowSessions tbody tr, #infowindowUsers tbody tr').hover(function () {
+						$(this).next().children().css("border-top-color", "#90caf9");
+					}, function () {
+						$(this).next().children().css("border-top-color", "");
+					});
+
+					$('#infowindowSessions tbody td:contains("true"), #infowindowUsers tbody td:contains("true")').css({
+						color: "#2196F3",
+						textTransform: "capitalize"
+					});
+
+					$('#infowindowSessions tbody td:contains("false"), #infowindowUsers tbody td:contains("false")').css({
+						color: "#F44336",
+						textTransform: "capitalize"
+					});
+
+				});
+
+				$('#infowindowSessions tbody tr, #infowindowUsers tbody tr').hover(function () {
+					$(this).next().children().css("border-top-color", "#90caf9");
+				}, function () {
+					$(this).next().children().css("border-top-color", "");
+				});
+
+				$('#infowindowSessions tbody td:contains("true"), #infowindowUsers tbody td:contains("true")').css({
+					color: "#2196F3",
+					textTransform: "capitalize"
+				});
+
+				$('#infowindowSessions tbody td:contains("false"), #infowindowUsers tbody td:contains("false")').css({
+					color: "#F44336",
+					textTransform: "capitalize"
+				});
+
+			});
+
+
+			/* control panel listeners */
+
+			$('input[name=icon], select[name=variable], input[name=scale], input[name=minColor], input[name=maxColor]').change(function () {
+				styleMarkers(map);
+			});
+
+			$.datepicker.setDefaults({
+				dateFormat: 'dd/mm/yy',
+				minDate: '01/12/2015',
+				maxDate: '31/03/2016',
+				firstDay: 1
+			});
+
+			$('#minDate').datepicker({
+				onSelect: function (dateText) {
+					//console.log(dateText);
+					$('#maxDate').datepicker("option", "minDate", dateText);
+					updateMarkers(map);
+					styleMarkers(map);
+				}
+			});
+
+			$('#maxDate').datepicker({
+				onSelect: function (dateText) {
+					//console.log(dateText);
+					$('#minDate').datepicker("option", "maxDate", dateText);
+					updateMarkers(map);
+					styleMarkers(map);
+				}
+			});
+
+			$('input[name=IncExcDate]').change(function () {
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('input[name=checkTime]').change(function () {
+				$('select[name=minTime]').prop("disabled", !$(this).prop("checked"));
+				$('select[name=maxTime]').prop("disabled", !$(this).prop("checked"));
+				$('input[name=IncExcTime]').prop("disabled", !$(this).prop("checked"));
+
+				$('#rangeTime label span').css("color", $(this).prop("checked") ? "#565656" : "graytext");
+				$('#rangeTime .IncExcTime label').css("color", $(this).prop("checked") ? "#000000" : "graytext");
+
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('#minTime').change(function () {
+				//console.log($('select[name=minTime] option:selected').val());
+				$('select[name=maxTime] option').prop("disabled", function () {
+					return $(this).val() < $('select[name=minTime] option:selected').val();
+				});
+
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('#maxTime').change(function () {
+				//console.log($('select[name=maxTime] option:selected').val());
+				$('select[name=minTime] option').prop("disabled", function () {
+					return $(this).val() > $('select[name=maxTime] option:selected').val();
+				});
+
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('input[name=IncExcTime]').change(function () {
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('input[name=verbalization]').change(function () {
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('input[name=holiday]').change(function () {
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			$('input[name=checkUserSelector]').change(function () {
+				updateMarkers(map);
+				styleMarkers(map);
+			});
+
+			var fixedHeader = function () {
+
+				var fixedHeader = $('<thead></thead>');
+				fixedHeader.addClass("fixedHeader");
+
+				fixedHeader.append('<tr></tr>');
+				fixedHeader.find('tr').css('border-bottom', 'solid 1px #cccccc');
+
+				var pixels = [];
+
+				pixels.push($('#userSelectorWindow').css("margin-top"));
+				pixels.push($('#userSelectorWindow').css("padding-top"));
+				pixels.push($('#userSelectorWindow .contentHead').css("height"));
+				pixels.push($('#userSelectorControlPanel').css("height"));
+				pixels.push($('#userSelectorControlPanel').css("margin-bottom"));
+				// top.push();
+
+				var offset = 1;
+
+				pixels.forEach(function (obj) {
+					offset += Number(obj.slice(0, obj.length - 2));
+				});
+
+				fixedHeader.css({
+					position: "fixed",
+					top: offset,
+					left: $('#userSelectorTable').css("left")
+				});
+
+				$('#userSelectorTable th').each(function () {
+					fixedHeader.find('tr').append(
+						$('<th></th>')
+						.addClass($(this).attr("class"))
+						.html($(this).html())
+						.width($(this).width())
+						// .click( sortRows($(this)) )
+						.click(function () {
+							if ($(this).hasClass("rowNumber") || $(this).hasClass("checkAll")) {
+								// do nothing
+								return;
+							}
+
+							if ($(this).hasClass("sortAsc") || $(this).hasClass("sortDesc")) {
+								$(this).toggleClass("sortAsc sortDesc");
+							} else {
+								$('#userSelectorTable .sortAsc').toggleClass("sortAsc");
+								$('#userSelectorTable .sortDesc').toggleClass("sortDesc");
+								$(this).toggleClass("sortAsc");
+							}
+
+							var flag = $(this).hasClass("sortAsc") ? +1 : -1;
+							// flag = +1 : sortAsc
+							// flag = -1 : sortDesc
+							var tr = $('#userSelectorTable tbody tr');
+							var key = $(this).attr("class").split(" ")[0];
+
+							var items = [];
+
+							$(tr).each(function () {
+								var val = $(this).children('.' + key).text();
+
+								switch (key) {
+									case "user_id":
+									case "department_id":
+									case "structured":
+										break;
+
+									case "role_id":
+										val = Number(val);
+										break;
+
+									case "session":
+									case "verbalization":
+									case "ip_address":
+									case "ua_slim":
+									case "pair_ip_ua":
+									case "country":
+									case "italy":
+									case "region":
+									case "fvg":
+									case "holiday":
+									case "mean_duration":
+										val = (val == "") ? -1 : Number(val);
+										break;
+
+									case "verbalization_pct":
+									case "italy_pct":
+									case "fvg_pct":
+									case "holiday_pct":
+										val = (val == "") ? -1 : Number(val.split(" ")[0]);
+										break;
+								}
+
+								items.push({
+									user_id: $(this).children('.user_id').text(),
+									value: val,
+									tr: $(this).detach()
+								});
+							});
+
+							items.sort(function (a, b) {
+								return ((a.value < b.value) ? -1 * flag : ((a.value > b.value) ? +1 * flag : 0));
+							});
+							//console.log(items);
+
+							var j = 1;
+							var tbody = $('<tbody></tbody>');
+							$(tbody).addClass($('#userSelectorTable tbody').attr("class"));
+
+							items.forEach(function (obj) {
+								if (!$(obj.tr).hasClass("hidden"))
+									$(obj.tr).children('.rowNumber').text(j++);
+
+								tbody.append(obj.tr);
+							});
+
+							$('#userSelectorTable tbody').remove();
+							$('#userSelectorTable').append(tbody);
+						})
+					);
+
+					// lock the width of the columns
+					$(this).width($(this).width());
+				});
+
+				$('#userSelectorTable').append(fixedHeader);
+
+				$(fixedHeader).find('input[name=checkSelectAll]').change(function () {
+					// attiva / disattiva tutte le checkbox visibili
+					$('#userSelectorTable tbody tr:not(.hidden) input').prop("checked", $(this).prop("checked"));
+					$('#userSelectorTable tbody tr:not(.hidden)').toggleClass("checked", $(this).prop("checked"));
+					$('#userSelector .stat .users').text($('#userSelectorTable tbody input:checked').length);
+
+					updateMarkers(map, $('input[name=checkUserSelector]').prop("checked"));
+					styleMarkers(map);
+				});
+			};
+
+			// open user selector window
+			$('#userSelector label').click(function () {
+
+				if ($('#userSelectorWindow').css("display") == "none") {
+
+					setUserSelectorWindowDimentions();
+					$('#userSelectorWindow').css("display", "block");
+					$('input[name=checkUserSelector]').prop("checked", true);
+
+					if ($('#userSelectorTable .fixedHeader').length == 0)
+						fixedHeader();
+				}
+			});
+
+			/* user selector window */
+
+			var roles = [
+				{ id: "1", str: "Professore Ordinario" },
+				{ id: "2", str: "Co.Co.Co." },
+				{ id: "3", str: "Professore Associato" },
+				{ id: "4", str: "Cat. EP - Area Tecnica, Tecnico-Scientifica ed Elaborazione Dati" },
+				{ id: "5", str: "Ricercatore Universitario" },
+				{ id: "6", str: "Cat. D - Area Socio-Sanitaria" },
+				{ id: "7", str: "Collaboratore Esperto Linguistico" },
+				{ id: "8", str: "Cat. D - Area Tecnica, Tecnico-Scientifica ed Elaborazione Dati" },
+				{ id: "9", str: "Cat. C - Area Tecnica, Tecnico-Scientifica ed Elaborazione Dati" },
+				{ id: "10", str: "Cat. EP - Area Medico-Odontoiatrica e Socio-Sanitaria" },
+				{ id: "11", str: "Libero Professionista" },
+				{ id: "12", str: "Assegnista di Ricerca" },
+				{ id: "13", str: "Ricercatore a Tempo Determinato" },
+				{ id: "14", str: "Personale Esterno" },
+				{ id: "15", str: "Cat. D - Area Amministrativa-Gestionale" },
+				{ id: "16", str: "Cat. C - Area Amministrativa" },
+				{ id: "17", str: "Dottorato di Ricerca" },
+				{ id: "18", str: "Lavoratore Autonomo" },
+				{ id: "", str: "Not Available" }
+			];
+
+			var selectRole = '<select name="selectRole" multiple>';
+
+			roles.forEach(function (obj) {
+				selectRole += '<option value="' + obj.id + '" index="[' + ((obj.id == "") ? "NA" : ((obj.id < 10) ? "0" + obj.id : obj.id)) + ']">' + obj.str + '</option>';
+			});
+
+			selectRole += '</select>';
+
+			var departments = [
+				{ id: "000530", str: "Unità di Staff Servizio di Prevenzione e Protezione" },
+				{ id: "000555", str: "Ufficio Industrial Liaison Office e Placement" },
+				{ id: "008000", str: "Ex Facoltà di Psicologia" },
+				{ id: "009000", str: "Ex Facoltà di Scienze della Formazione" },
+				{ id: "010000", str: "Ex Scuola Superiore di Lingue Moderne per Interpreti e Traduttori" },
+				{ id: "010690", str: "Centro Linguistico di Ateneo" },
+				{ id: "011000", str: "Ex Facoltà di Ingegneria" },
+				{ id: "014467", str: "Dipartimento di Fisica" },
+				{ id: "014468", str: "Dipartimento di Scienze Politiche e Sociali" },
+				{ id: "014472", str: "Dipartimento di Scienze Economiche, Aziendali, Matematiche e Statistiche" },
+				{ id: "015000", str: "Ex Facoltà di Medicina e Chirurgia" },
+				{ id: "017074", str: "Dipartimento Universitario Clinico di Scienze Mediche, Chirurgiche e della Salute" },
+				{ id: "017078", str: "Dipartimento di Scienze Giuridiche, del Linguaggio, dell'Interpretazione e della Traduzione" },
+				{ id: "017080", str: "Dipartimento di Matematica e Geoscienze" },
+				{ id: "017081", str: "Dipartimento di Studi Umanistici" },
+				{ id: "023000", str: "Dipartimento di Matematica e Informatica" },
+				{ id: "028654", str: "Segreteria Didattica DF" },
+				{ id: "028663", str: "Segreteria Amministrativa DSCF" },
+				{ id: "029000", str: "Dipartimento di Scienze Chimiche e Farmaceutiche" },
+				{ id: "042000", str: "Dipartimento di Ingegneria e Architettura" },
+				{ id: "056000", str: "Dipartimento di Italianistica Linguistica Comunicazione Spettacolo" },
+				{ id: "084000", str: "Dipartimento di Scienze della Vita" },
+				{ id: "", str: "Not Available" }
+			];
+
+			var selectDepartment = '<select name="selectDepartment" multiple>';
+
+			departments.forEach(function (obj) {
+				selectDepartment += '<option value="' + obj.id + '" index="[' + ((obj.id == "") ? "NA" : obj.id) + ']">' + obj.str + '</option>';
+			});
+
+			selectDepartment += '</select>';
+
+			var radioStructured = '<ul>' +
+				'<li>' +
+					'<input id="structuredRadioAny" type="radio" name="structured" value="any" checked="checked">' +
+					'<label for="structuredRadioAny">Any</label>' +
+				'</li><li>' +
+					'<input id="structuredRadioTrue" type="radio" name="structured" value="true">' +
+					'<label for="structuredRadioTrue">True</label>' +
+				'</li><li>' +
+					'<input id="structuredRadioFalse" type="radio" name="structured" value="false">' +
+					'<label for="structuredRadioFalse">False</label>' +
+				'</li><li>' +
+					'<input id="structuredRadioNA" type="radio" name="structured" value="">' +
+					'<label for="structuredRadioNA">NA</label>' +
+				'</li>' +
+			'</ul>';
+
+			/*
+			var globalStats = {
+				session: {
+					min: 1,
+					first: 7,
+					median: 18,
+					mean: 25.33,
+					third: 36,
+					max: 260,
+					na: '-',
+					sd: 26.64
+				},
+				verbalization: {
+					min: 0,
+					first: 6,
+					median: 16.5,
+					mean: 22.7,
+					third: 32,
+					max: 226,
+					na: '-',
+					sd: 24.09
+				},
+				ip_address: {
+					min: 1,
+					first: 2,
+					median: 4,
+					mean: 6.61,
+					third: 9,
+					max: 57,
+					na: 13,
+					sd: 7.17
+				},
+				ua_slim: {
+					min: 1,
+					first: 2,
+					median: 3,
+					mean: 3.5,
+					third: 5,
+					max: 16,
+					na: 13,
+					sd: 2.33
+				},
+				pair_ip_ua: {
+					min: 1,
+					first: 3,
+					median: 6,
+					mean: 8.33,
+					third: 11,
+					max: 75,
+					na: 13,
+					sd: 8.61
+				},
+				country: {
+					min: 1,
+					first: 1,
+					median: 1,
+					mean: 1.11,
+					third: 1,
+					max: 4,
+					na: 13,
+					sd: 0.37
+				},
+				italy: {
+					min: 0,
+					first: 6,
+					median: 16,
+					mean: 22.62,
+					third: 32,
+					max: 226,
+					na: 13,
+					sd: 23.99
+				},
+				italy_pct: {
+					min: 0,
+					first: 100,
+					median: 100,
+					mean: 98.31,
+					third: 100,
+					max: 100,
+					na: 13,
+					sd: 8.17
+				},
+				region: {
+					min: 0,
+					first: 1,
+					median: 1,
+					mean: 1.68,
+					third: 2,
+					max: 8,
+					na: 13,
+					sd: 1.02
+				},
+				fvg: {
+					min: 0,
+					first: 4,
+					median: 12,
+					mean: 18.86,
+					third: 27,
+					max: 213,
+					na: 13,
+					sd: 21.28
+				},
+				fvg_pct: {
+					min: 0,
+					first: 68.42,
+					median: 98.25,
+					mean: 80.23,
+					third: 100,
+					max: 100,
+					na: 13,
+					sd: 30.58
+				},
+				holiday: {
+					min: 0,
+					first: 0,
+					median: 1,
+					mean: 2.28,
+					third: 3,
+					max: 69,
+					na: 13,
+					sd: 4.6
+				},
+				holiday_pct: {
+					min: 0,
+					first: 0,
+					median: 4.08,
+					mean: 9.9,
+					third: 14.29,
+					max: 100,
+					na: 13,
+					sd: 16.37
+				},
+				mean_duration: {
+					min: 0,
+					first: 16.6,
+					median: 30.52,
+					mean: 29.15,
+					third: 37.39,
+					max: 446,
+					na: 13,
+					sd: 21.28
+				}
+			};
+			//console.log(globalStats);
+			*/
+
+			var quantiles = {
+				session: [1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25, 25, 25, 26, 28, 29, 30, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 43, 43, 45, 46, 48, 50, 52, 53, 55, 57, 59, 61, 63, 67, 71, 74, 83, 100, 126, 260],
+				verbalization: [0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 21, 22, 23, 23, 23, 24, 25, 26, 27, 28, 29, 30, 30, 31, 32, 33, 33, 35, 36, 37, 38, 39, 41, 42, 43, 44, 46, 47, 49, 51, 53, 55, 57, 60, 65, 68, 75, 88, 113, 226],
+				verbalization_pct: [20, 50, 50, 63.64, 66.67, 68, 71.43, 75, 75, 76, 76.92, 77.78, 78.95, 80, 80.77, 81.48, 81.82, 82.35, 83.33, 83.33, 83.33, 84.21, 84.62, 85, 85.71, 85.71, 86.36, 86.79, 87.1, 87.5, 87.5, 87.8, 88.14, 88.37, 88.57, 88.89, 89.13, 89.47, 89.8, 90, 90, 90.41, 90.62, 90.91, 90.91, 91.3, 91.57, 91.67, 92, 92.31, 92.73, 92.86, 93.22, 93.33, 93.75, 94.12, 94.29, 94.52, 94.83, 95, 95.24, 95.65, 95.89, 96.15, 96.55, 96.97, 97.56, 98.28, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+				ip_address: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 11, 11, 12, 12, 12, 12, 13, 13, 14, 14, 15, 16, 17, 18, 20, 22, 24, 28, 38, 57],
+				ua_slim: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 10, 11, 16],
+				pair_ip_ua: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 12, 12, 12, 12, 13, 13, 14, 14, 14, 15, 16, 16, 17, 17, 18, 19, 20, 21, 22, 23, 25, 29, 35, 44, 75],
+				country: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4],
+				italy: [0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 13, 14, 15, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 19, 20, 21, 21, 21, 22, 22, 23, 23, 24, 25, 26, 27, 28, 28, 29, 30, 31, 32, 33, 33, 34, 36, 37, 38, 39, 40, 41, 42, 44, 45, 47, 49, 51, 52, 55, 57, 60, 64, 68, 75, 87, 113, 226],
+				italy_pct: [0, 50, 70, 83.33, 86.96, 91.67, 93.75, 95.83, 97.06, 98.86, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+				region: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 8],
+				fvg: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 10, 11, 11, 12, 12, 12, 13, 14, 14, 15, 15, 16, 16, 16, 17, 17, 18, 18, 18, 19, 20, 21, 21, 22, 22, 23, 23, 24, 25, 26, 27, 28, 29, 29, 30, 32, 33, 34, 36, 37, 38, 39, 40, 41, 43, 44, 47, 49, 51, 54, 57, 63, 68, 76, 96, 214],
+				fvg_pct: [0, 0, 0, 0, 0, 0, 0, 11.9, 16.22, 20, 25, 29.41, 33.33, 37.14, 41.67, 45, 50, 50, 54.84, 57.14, 60, 62.07, 64.29, 66.67, 66.67, 68.42, 71.43, 73.68, 76.19, 77.78, 80, 81.63, 83.87, 85.33, 86.27, 87.5, 88.46, 89.66, 90.62, 91.38, 92.31, 92.73, 93.53, 94.12, 94.59, 95.35, 96.15, 96.67, 97.37, 97.87, 98.25, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+				holiday: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8, 8, 10, 11, 13, 20, 69],
+				holiday_pct: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.64, 2.33, 2.86, 3.33, 3.64, 4.08, 4.55, 4.8, 5.26, 5.56, 5.88, 6.25, 6.45, 6.82, 7.14, 7.69, 8.11, 8.33, 8.7, 9.09, 9.52, 10, 10, 10.34, 11.11, 11.54, 12.12, 12.5, 13.04, 13.79, 14.29, 14.81, 15.38, 16.22, 16.67, 16.67, 17.39, 17.86, 19.08, 20, 20, 20.83, 22.22, 23.81, 25, 25, 26.67, 28.57, 30, 33.33, 33.33, 40, 50, 53.57, 100, 100],
+				mean_duration: [0, 1, 2, 3.09, 4.03, 5.01, 6, 6.85, 7.4, 8, 8.58, 9.07, 9.67, 10.67, 11.31, 11.79, 12.19, 12.82, 13.4, 13.65, 14.33, 14.79, 15.39, 15.69, 16, 16.6, 17.09, 17.57, 18.25, 19, 19.43, 19.89, 20.46, 21, 21.61, 22.32, 23, 23.7, 24.22, 24.83, 25.35, 25.86, 26.33, 26.94, 27.36, 28.05, 28.56, 29.29, 29.8, 30, 30.52, 30.85, 31.19, 31.5, 31.89, 32, 32.35, 32.58, 32.78, 33, 33.24, 33.4, 33.67, 33.98, 34.12, 34.33, 34.75, 35, 35.39, 35.66, 35.88, 36.09, 36.5, 37, 37.15, 37.39, 38, 38.22, 38.67, 39.11, 39.39, 39.79, 40.29, 41, 41.38, 41.93, 42.33, 42.67, 43.33, 43.83, 44.17, 45.46, 46.56, 47.5, 49.37, 51.36, 53, 57, 62.14, 76.2, 446]
+			};
+			//console.log(quantiles);
+
+			var contentString = function () {
+
+				var content = [];
+
+				// content head
+				content.push('<div class="contentHead">');
+				content.push('<table><tr>');
+				content.push('<td id="uswTitle"><h1>User Selector</h1></td>');
+				content.push('<td id="uswCloseButton"><span class="fa fa-times" aria-hidden="true"></span></td>');
+				content.push('</tr></table>');
+				content.push('</div>');
+
+				// content body
+				content.push('<div class="contentBody">');
+
+				// user selector control panel
+				content.push('<table id="userSelectorControlPanel"><tr>');
+
+				// filter
+				content.push('<td class="filter">');
+				content.push('<table id="userFilter">');
+
+				content.push('<thead><tr>');
+				content.push('<th class="role">');
+				content.push('Role<span class="fa fa-eraser" aria-hidden="true" name="selectRole"></span>');
+				content.push('</th>');
+				content.push('<th class="department">');
+				content.push('Department<span class="fa fa-eraser" aria-hidden="true" name="selectDepartment"></span>');
+				content.push('</th>');
+				content.push('<th class="structured">');
+				content.push('Structured');
+				content.push('</th>');
+				content.push('</tr></thead>');
+
+				content.push('<tbody><tr>');
+				content.push('<td class="role">');
+				content.push(selectRole);
+				content.push('</td>');
+				content.push('<td class="department">');
+				content.push(selectDepartment);
+				content.push('</td>');
+				content.push('<td class="structured">');
+				content.push(radioStructured);
+				content.push('</td>');
+				content.push('</tr></tbody>');
+
+				content.push('</table>');
+				content.push('</td>');
+
+				// alert
+				content.push('<td class="alert">');
+				content.push('<div id="userAlert">');
+
+				content.push('<div class="head">');
+				content.push('<table><tr>');
+				content.push('<td class="title">Alert</td>');
+				content.push('<td class="button">');
+				content.push('<span class="fa fa-check-square-o" aria-hidden="true"></span>');
+				// content.push('<span class="fa fa-level-up" aria-hidden="true"></span>');
+				content.push('<span class="fa fa-filter" aria-hidden="true"></span>');
+				// content.push('<span class="fa fa-eraser" aria-hidden="true"></span>');
+				content.push('</td>');
+				content.push('<td class="radio">');
+				content.push('<input id="userAlertRadioOr" type="radio" name="userAlertRadio" value="or" checked>');
+				content.push('<label for="userAlertRadioOr">OR</label>');
+				content.push('<input id="userAlertRadioAnd" type="radio" name="userAlertRadio" value="and">');
+				content.push('<label for="userAlertRadioAnd">AND</label>');
+				content.push('</td>');
+				content.push('</tr></table>');
+				content.push('</div>');
+
+				content.push('<div class="body">');
+				content.push('<table>');
+
+				var cols = {
+					session: 'session',
+					verbalization: 'verb.',
+					verbalization_pct: 'verb. %',
+					ip_address: 'ip',
+					ua_slim: 'ua',
+					pair_ip_ua: '(ip, ua)',
+					country: 'state',
+					italy: 'italy',
+					italy_pct: 'italy %',
+					region: 'region',
+					fvg: 'fvg',
+					fvg_pct: 'fvg %',
+					holiday: 'holiday',
+					holiday_pct: 'holiday %',
+					mean_duration: 'µ time'
+				}
+
+				for (var key in cols) {
+					content.push('<tr name="' + key + '">');
+
+					content.push('<td class="check"><input type="checkbox" name="' + key + '"></td>');
+					content.push('<td class="stat">' + cols[key] + '</td>');
+					content.push('<td class="minPct">25%</td>');
+					content.push('<td class="slider"><div name="' + key + '"></div></td>');
+					content.push('<td class="maxPct">75%</td>');
+					content.push('<td class="IncExc"><select name="' + key + '" disabled><option>IN</option><option>EX</option></select></td>');
+
+					content.push('</tr>');
+				}
+
+				content.push('</table>');
+				content.push('</div>');
+
+				content.push('</div>');
+				content.push('</td>');
+
+				content.push('</tr></table>');
+
+				// user selector table
+				content.push('<div class="tableContainer">');
+				content.push(httpRequest("user_selector_table.php"));
+				content.push('</div>');
+
+				content.push('</div>');
+
+				return content.join("");
+			}
+
+			$('#userSelectorWindow').html(contentString());
+
+			var filterUpdate = function () {
+
+				var roles = $('#userSelectorControlPanel select[name=selectRole]').val();
+				var departments = $('#userSelectorControlPanel select[name=selectDepartment]').val();
+				var structured = $('#userSelectorControlPanel input[name=structured]:checked').val();
+
+				var userAlertRadio = $('#userAlert .head input[name=userAlertRadio]:checked').val();
+
+				var j = 1;
+
+				$('#userSelectorTable tbody tr').each(function () {
+
+					if (
+						((roles.length != 0) && (roles.indexOf($(this).children('.role_id').text()) == -1)) ||
+						((departments.length != 0) && (departments.indexOf($(this).children('.department_id').text()) == -1)) ||
+						((structured != "any") && ($(this).children('.structured').text() != structured)) ||
+
+						(
+							$('#userAlert .head .button .fa-filter').hasClass("checked")
+							&& (
+								((userAlertRadio == "or") && ($('td.alert', this).length == 0))
+								|| ((userAlertRadio == "and") && !$(this).hasClass("alert"))
+							)
+						)
+
+					) {
+						$(this).toggleClass("hidden", true);
+					} else {
+						$(this).toggleClass("hidden", false);
+						$(this).children('.rowNumber').text(j++);
+					}
+
+				});
+
+				var visible = $('#userSelectorTable tbody tr:not(.hidden) input').length;
+				var checked = $('#userSelectorTable tbody tr:not(.hidden) input:checked').length;
+
+				$('#userSelectorTable th.rowNumber').text(visible);
+
+				// se il numero di checkbox visibili risulta diverso da zero e
+				// se il numero di checkbox attive risulta uguale al numero di checkbox visibili
+				// allora attiva anche la checkbox select-all, altrimenti disattivala
+				$('#userSelectorTable input[name=checkSelectAll]').prop("checked", (visible != 0) && (visible == checked));
+
+			};
+
+			$('#userFilter thead .fa-eraser').click(function () {
+				$('#userSelectorControlPanel select[name=' + $(this).attr("name") + '] option').prop("selected", false);
+				filterUpdate();
+			});
+
+			$('#userSelectorControlPanel select[name=selectRole], #userSelectorControlPanel select[name=selectDepartment], #userSelectorControlPanel input[name=structured]').change(function () {
+				filterUpdate();
+			});
+
+			var alertUpdate = function () {
+
+				var userAlertRadio = $('#userAlert .head input[name=userAlertRadio]:checked').val();
+
+				var cols = [];
+
+				$('#userAlert .body .check input').each(function () {
+					cols.push($(this).attr("name"));
+				});
+
+				cols.forEach(function (col) {
+					if ($('#userAlert .body .check input[name=' + col + ']').prop("checked")) {
+						// checked
+						var min = $('#userAlert .body tr[name=' + col + '] .minPct').text().replace("%", "");
+						var max = $('#userAlert .body tr[name=' + col + '] .maxPct').text().replace("%", "");
+						var IncExc = $('#userAlert .body .IncExc select[name=' + col + '] option:selected').text();
+
+						$('#userSelectorTable tbody td.' + col).each(function () {
+							var val = $(this).text();
+							val = (val == "") ? -1 : Number((col == "italy_pct" || col == "verbalization_pct" || col == "fvg_pct" || col == "holiday_pct") ? val.split(" ")[0] : val);
+
+							$(this).toggleClass("alert",
+								(val != -1) && (
+									(IncExc == "IN") && (val >= quantiles[col][min] && val <= quantiles[col][max]) ||
+									(IncExc == "EX") && !(val >= quantiles[col][min] && val <= quantiles[col][max])
+								)
+							);
+						});
+					} else {
+						// unchecked
+						$('#userSelectorTable tbody td.' + col + '.alert').toggleClass("alert", false);
+					}
+				});
+
+				if ($('#userAlert .body .check input:checked').length == 0) {
+					$('#userSelectorTable tbody tr').toggleClass("alert", false);
+				} else {
+					$('#userSelectorTable tbody tr').each(function () {
+						$(this).toggleClass("alert", $(this).children('td.alert').length == $('#userAlert .body .check input:checked').length);
+					});
+				}
+
+				if ($('#userAlert .head .button .fa-filter').hasClass("checked")) {
+					filterUpdate();
+				}
+			}
+
+			$('#userAlert .head .button .fa-check-square-o').click(function () {
+				console.log("click");
+
+				var userAlertRadio = $('#userAlert .head input[name=userAlertRadio]:checked').val();
+
+				$('#userSelectorTable tbody tr:not(.hidden)').each(function () {
+					if (userAlertRadio == "or") {
+						// userAlertRadio == or
+						$(this).find('input').prop("checked", $('td.alert', this).length > 0);
+						$(this).toggleClass("checked", $('td.alert', this).length > 0);
+					} else {
+						// userAlertRadio == and
+						$(this).find('input').prop("checked", $(this).hasClass("alert"));
+						$(this).toggleClass("checked", $(this).hasClass("alert"));
+					}
+				});
+
+				// update control panel
+				$('#userSelector .stat .users').text($('#userSelectorTable tbody input:checked').length);
+
+				// update checkbox all
+				var visible = $('#userSelectorTable tbody tr:not(.hidden) input').length;
+				var checked = $('#userSelectorTable tbody tr:not(.hidden) input:checked').length;
+				$('#userSelectorTable input[name=checkSelectAll]').prop("checked", (visible != 0) && (visible == checked));
+
+				// update markers
+				updateMarkers(map, $('input[name=checkUserSelector]').prop("checked"));
+				styleMarkers(map);
+			});
+
+			$('#userAlert .head .button .fa-filter').click(function () {
+				$(this).toggleClass("checked");
+				filterUpdate();
+			});
+
+			$('#userAlert .head .radio input[name=userAlertRadio]').change(function () {
+				$('#userSelectorTable tbody').toggleClass("userAlertRadioOr userAlertRadioAnd");
+
+				if ($('#userAlert .head .button .fa-filter').hasClass("checked")) {
+					filterUpdate();
+				}
+			});
+
+			$('#userAlert .body .check input').change(function () {
+
+				var col = $(this).attr("name");
+
+				$('#userAlert .body .slider div[name=' + col + ']').slider("option", "disabled", !$(this).prop("checked"));
+				$('#userAlert .body .IncExc select[name=' + col + ']').prop("disabled", !$(this).prop("checked"));
+				$('#userAlert .body tr[name=' + col + ']').css("color", $(this).prop("checked") ? "black" : "grey");
+
+				$('#userSelectorTable .fixedHeader th.' + col).toggleClass("alert", $(this).prop("checked"));
+
+				alertUpdate();
+			});
+
+			$('#userAlert .body .slider div').slider({
+				disabled: true,
+				min: 0,
+				max: 100,
+				step: 1,
+				values: [25, 75],
+				range: true,
+				slide: function (event, ui) {
+					$(this).parent().prev().text(ui.values[0] + "%");
+					$(this).parent().next().text(ui.values[1] + "%");
+				},
+				change: function (event, ui) {
+					alertUpdate();
+				}
+			});
+
+			$('#userAlert .body .IncExc select').change(function () {
+				alertUpdate();
+			});
+
+			$('#uswCloseButton span').click(function () {
+				$('#userSelectorWindow').css("display", "none");
+			});
+
+			/*
+			$('#userSelectorTable tbody tr').hover(function () {
+				$(this).nextAll(':not(.hidden)').first().children().css("border-top-color", "#90caf9");
+			}, function () {
+				$(this).nextAll(':not(.hidden)').first().children().css("border-top-color", "");
+			});
+			*/
+
+			$('#userSelectorTable tbody input').change(function () {
+
+				$(this).parent().parent().toggleClass("checked", $(this).prop("checked"));
+				$('#userSelector .stat .users').text($('#userSelectorTable tbody input:checked').length);
+
+				// se il numero di checkbox attive risulta uguale al numero di checkbox visibili
+				// allora attiva anche la checkbox select-all, altrimenti disattivala
+				$('#userSelectorTable input[name=checkSelectAll]').prop("checked", $('#userSelectorTable tbody tr:not(.hidden) input:checked').length == $('#userSelectorTable tbody tr:not(.hidden) input').length);
+
+				updateMarkers(map, $('input[name=checkUserSelector]').prop("checked"));
+				styleMarkers(map);
+			});
+
+			$('#userSelectorTable tbody td:contains("true")').css({
+				color: "#2196F3",
+				textTransform: "capitalize"
+			});
+			$('#userSelectorTable tbody td:contains("false")').css({
+				color: "#F44336",
+				textTransform: "capitalize"
+			});
+
+			var setUserSelectorWindowDimentions = function () {
+
+				var body = {
+					width: $('body').css("width"),
+					height: $('body').css("height")
+				};
+
+				var controlPanel = {
+					width: $('#controlPanel').css("width"),
+					marginLeft: $('#controlPanel').css("margin-left"),
+					//marginRight: $('#controlPanel').css("margin-right"),
+					paddingLeft: $('#controlPanel').css("padding-left"),
+					paddingRight: $('#controlPanel').css("padding-right")
+				};
+
+				var userSelectorWindow = {
+					marginTop: $('#userSelectorWindow').css("margin-top"),
+					marginRight: $('#userSelectorWindow').css("margin-right"),
+					paddingTop: $('#userSelectorWindow').css("padding-top"),
+					paddingBottom: $('#userSelectorWindow').css("padding-bottom"),
+					paddingLeft: $('#userSelectorWindow').css("padding-left"),
+					paddingRight: $('#userSelectorWindow').css("padding-right")
+				};
+
+				var uswContentHead = {
+					height: $('#userSelectorWindow .contentHead').css("height"),
+					//marginBottom: $('#userSelectorWindow').css("margin-bottom"),
+					//paddingTop: $('#userSelectorWindow .contentHead').css("padding-top"),
+					//paddingLeft: $('#userSelectorWindow .contentHead').css("padding-left"),
+					//paddingRight: $('#userSelectorWindow .contentHead').css("padding-right")
+				};
+
+				var uswContentBody = {
+					paddingTop: $('#userSelectorWindow .contentBody').css("padding-top"),
+					paddingBottom: $('#userSelectorWindow .contentBody').css("padding-bottom")
+				};
+
+				var uswControlPanel = {
+					height: $('#userSelectorControlPanel').css("height"),
+					marginBottom: $('#userSelectorControlPanel').css("margin-bottom")
+				};
+
+				[body, controlPanel, userSelectorWindow, uswContentHead, uswContentBody, uswControlPanel].forEach(function (obj) {
+					for (var key in obj) {
+						obj[key] = Number(obj[key].slice(0, obj[key].length - 2));
+					}
+				});
+
+				userSelectorWindow.width = (
+					body.width -
+					controlPanel.width -
+					controlPanel.marginLeft -
+					//controlPanel.marginRight -
+					controlPanel.paddingLeft -
+					controlPanel.paddingRight -
+					userSelectorWindow.marginRight -
+					userSelectorWindow.paddingLeft -
+					userSelectorWindow.paddingRight -
+					10 // the space between control panel and user selector window
+				);
+
+				userSelectorWindow.height = (
+					body.height -
+					userSelectorWindow.marginTop -
+					userSelectorWindow.paddingTop -
+					userSelectorWindow.paddingBottom -
+					24 // bottom margin
+				);
+
+				$('#userSelectorWindow').css({
+					width: userSelectorWindow.width + "px",
+					height: userSelectorWindow.height + "px"
+				});
+
+				$('#userSelectorWindow .contentBody').css("height", (
+					userSelectorWindow.height
+					- uswContentHead.height
+				) + "px");
+
+				$('#userSelectorWindow .contentBody .tableContainer').css("height", (
+					userSelectorWindow.height -
+					uswContentHead.height -
+					uswControlPanel.height -
+					uswControlPanel.marginBottom
+					- 2 // unknown
+				) + "px");
+
+				console.log(uswControlPanel.height);
+
+			};
+
+			$(window).resize(function () {
+
+				if ($('#userSelectorWindow').css("display") == "block") {
+
+					setUserSelectorWindowDimentions();
+
+					// adjust width fixed header's th
+					$('#userSelectorTable thead:not(.fixedHeader) th').each(function () {
+						var col = $(this).attr("class").split(" ")[0];
+
+						$('#userSelectorTable thead:not(.fixedHeader) th.' + col).width($(this).width());
+					});
+				}
+			});
+		}
+
+		function httpRequest(url, json) {
+
+			var response = "";
+
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					response = xmlhttp.responseText;
+				}
+			};
+
+			xmlhttp.open("GET", url, false);
+			xmlhttp.send();
+
+			//console.log(response);
+			//console.log(JSON.parse(response));
+			return (json == undefined || !json) ? response : JSON.parse(response);
+		}
+
+		function queryString(keys, checkUserSelector, coordinates, ip_address) {
+
+			var query = [];
+
+			keys.forEach(function (key) {
+
+				switch (key) {
+					case "minDate":
+						var minDate = $('#minDate').val();
+						minDate = minDate.split("/");
+						minDate = minDate[2] + "-" + minDate[1] + "-" + minDate[0];
+						query.push("minDate=" + minDate);
+						break;
+					case "maxDate":
+						var maxDate = $('#maxDate').val();
+						maxDate = maxDate.split("/");
+						maxDate = maxDate[2] + "-" + maxDate[1] + "-" + maxDate[0];
+						query.push("maxDate=" + maxDate);
+						break;
+					case "IncExcDate":
+						query.push("IncExcDate=" + $('input[name=IncExcDate]:checked').val());
+						break;
+					case "minTime":
+						if ($('input[name=checkTime]').prop("checked"))
+							query.push("minTime=" + $('select[name=minTime] option:selected').val());
+						break;
+					case "maxTime":
+						if ($('input[name=checkTime]').prop("checked"))
+							query.push("maxTime=" + $('select[name=maxTime] option:selected').val());
+						break;
+					case "IncExcTime":
+						if ($('input[name=checkTime]').prop("checked"))
+							query.push("IncExcTime=" + $('input[name=IncExcTime]:checked').val());
+						break;
+					case "verbalization":
+						query.push("verbalization=" + $('input[name=verbalization]:checked').val());
+						break;
+					case "holiday":
+						query.push("holiday=" + $('input[name=holiday]:checked').val());
+						break;
+				}
+
+			});
+
+			if (checkUserSelector != undefined && checkUserSelector == true) {
+
+				var checked = Array();
+
+				$('#userSelectorTable tbody input:checked').each(function () {
+					//console.log($(this).attr("name"));
+					checked.push($(this).attr("name"));
+				});
+
+				if (checked.length <= 1086 / 2) {
+					var IncExcUsers = "include";
+
+					query.push("IncExcUsers=" + IncExcUsers);
+					query.push("users=" + checked.join(" "));
+
+				} else { // set difference
+
+					var users = Array();
+
+					$('#userSelectorTable tbody td.user_id').each(function () {
+						users.push($(this).text());
+					});
+					//console.log(users);
+
+					users = users.filter(function (user) {
+						return checked.indexOf(user) == -1;
+					});
+					//console.log(users);
+
+					if (users.length != 0) {
+						var IncExcUsers = "exclude";
+
+						query.push("IncExcUsers=" + IncExcUsers);
+						query.push("users=" + users.join(" "));
+					}
+				}
+			}
+
+			if (coordinates != undefined)
+				query.push("coordinates=" + coordinates);
+
+			if (ip_address != undefined)
+				query.push("ip_address=" + ip_address);
+
+			return encodeURI(query.join("&"));
+		}
+
+		function updateMarkers(map) {
+
+			infowindow.close();
+
+			var query = queryString([
+				"minDate",
+				"maxDate",
+				"IncExcDate",
+				"minTime",
+				"maxTime",
+				"IncExcTime",
+				"verbalization",
+				"holiday"
+			], $('input[name="checkUserSelector"]').prop("checked"));
+			console.log(query);
+
+			var items = httpRequest("update_markers.php?" + query, true);
+			//console.log(items);
+
+			items.forEach(function (obj) {
+
+				var feature = map.data.getFeatureById(obj["coordinates"]);
+				var position = obj["coordinates"].split(" ");
+
+				if (feature == undefined) {
+					// add features
+					map.data.add(new google.maps.Data.Feature({
+						geometry: { lat: Number(position[0]), lng: Number(position[1]) },
+						id: obj["coordinates"],
+						properties: {
+							ip_address: obj["ip_address"],
+							session_id: obj["session_id"],
+							user_id: obj["user_id"]
+						}
+					}));
+
+				} else {
+					// update properties
+					feature.setProperty("ip_address", obj["ip_address"]);
+					feature.setProperty("session_id", obj["session_id"]);
+					feature.setProperty("user_id", obj["user_id"]);
+				}
+
+			});
+
+			var coordinates = items.map(function (obj) {
+				return obj["coordinates"];
+			});
+
+			map.data.forEach(function (feature) {
+				if (coordinates.indexOf(feature.getId()) == -1)
+					// remove features
+					map.data.remove(feature);
+			});
+
+			statistics();
+		}
+
+		function styleMarkers(map) {
+
+			var icon = $('input[name=icon]:checked').val();
+			var variable = $('select[name=variable] option:selected').val();
+			var scale = $('input[name=scale]').val();
+			var minColor = $('input[name=minColor]').val();
+			var maxColor = $('input[name=maxColor]').val();
+
+			var query = queryString([
+				"minDate",
+				"maxDate",
+				"IncExcDate",
+				"minTime",
+				"maxTime",
+				"IncExcTime",
+				"verbalization",
+				"holiday"
+			], $('input[name="checkUserSelector"]').prop("checked"));
+			//console.log(query);
+
+			var range = httpRequest("style_markers.php?" + query, true);
+			//console.log(range);
+			var minRange = range["min_" + variable];
+			var maxRange = range["max_" + variable];
+
+			minColor = w3color(minColor).toHsl();
+			minColor.s *= 100;
+			minColor.l *= 100;
+			maxColor = w3color(maxColor).toHsl();
+			maxColor.s *= 100;
+			maxColor.l *= 100;
+
+			map.data.setStyle(function (feature) {
+
+				var fillColor = minColor;
+
+				if (minRange != maxRange) {
+					var fraction = (feature.getProperty(variable) - minRange) / (maxRange - minRange);
+
+					fillColor = {
+						h: minColor.h + (maxColor.h - minColor.h) * fraction,
+						s: minColor.s + (maxColor.s - minColor.s) * fraction,
+						l: minColor.l + (maxColor.l - minColor.l) * fraction
+					};
+				}
+				//console.log(fillColor);
+
+				switch (icon) {
+					case "marker":
+						return {
+							icon: {
+								path: fontawesome.markers.MAP_MARKER,
+								scale: scale,
+								fillColor: 'hsl(' + fillColor.h + ', ' + fillColor.s + '%, ' + fillColor.l + '%)',
+								fillOpacity: 1,
+								strokeWeight: 0.2,
+								strokeColor: 'hsl(' + fillColor.h + ', ' + fillColor.s + '%, ' + (fillColor.l * 0.5) + '%)',
+								strokeOpacity: 1,
+								anchor: new google.maps.Point(18.25, -5)
+							}
+						};
+					case "circle":
+						return {
+							icon: {
+								path: fontawesome.markers.CIRCLE,
+								scale: scale,
+								fillColor: 'hsl(' + fillColor.h + ', ' + fillColor.s + '%, ' + fillColor.l + '%)',
+								fillOpacity: 0.8,
+								strokeWeight: 0.2,
+								strokeColor: 'hsl(' + fillColor.h + ', ' + fillColor.s + '%, ' + (fillColor.l * 0.5) + '%)',
+								strokeOpacity: 1,
+								anchor: new google.maps.Point(27.25, -28)
+							}
+						};
+				}
+
+			});
+		}
+
+		function infowindowContent(part, coordinates, ip_address) {
+
+			var query = queryString([
+				"minDate",
+				"maxDate",
+				"IncExcDate",
+				"minTime",
+				"maxTime",
+				"IncExcTime",
+				"verbalization",
+				"holiday"
+			], $('input[name="checkUserSelector"]').prop("checked"), coordinates, ip_address);
+			console.log(query);
+
+			return httpRequest("infowindow_" + part + ".php?" + query, false);
+		}
+
+		function statistics() {
+			/*
+			var obj = {n: 0};
+
+			map.data.forEach(function (feature) {
+				//console.log(feature.getId());
+				if (feature.getId() != "") {
+					obj.n++;
+				}
+			});
+
+			$('#statistics span').text(obj.n);
+			*/
+
+			var query = queryString([
+				"minDate",
+				"maxDate",
+				"IncExcDate",
+				"minTime",
+				"maxTime",
+				"IncExcTime",
+				"verbalization",
+				"holiday"
+			], $('input[name="checkUserSelector"]').prop("checked"));
+			//console.log(query);
+
+			var statistics = httpRequest("statistics.php?" + query, true);
+			//console.log(statistics);
+
+			var max = {
+				coordinates: 672,
+				ip_address: 2802,
+				session_id: 27514,
+				user_id: 1086
+			};
+
+			for (var key in statistics) {
+				//$('#statistics .' + key + ' .value').text(statistics[key] + " / " + max[key]);
+				$('#statistics .' + key + ' .value').text(statistics[key]);
+				$('#statistics .' + key + ' .max').text(max[key]);
+				$('#statistics .' + key + ' .pct').text((statistics[key] / max[key] * 100).toFixed(2) + " %");
+			}
+		}
+
+		function loading() {
+
+			if ($('#loading span').length == 0)
+				$('<span></span>').addClass('fa fa-spinner fa-spin fa-3x fa-fw').appendTo('#loading');
+			else
+				$('#loading span').remove();
+		}
+
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_KEY_HERE&callback=initMap"></script>
+</body>
+</html>

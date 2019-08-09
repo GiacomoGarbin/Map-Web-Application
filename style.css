@@ -1,0 +1,1214 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 100%;
+}
+
+/* control panel */
+
+#controlPanel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: 80px;
+	margin-left: 10px;
+	padding: 8px;
+	z-index: 5;
+	background-color: #ffffff;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 400;
+	border-radius: 3px;
+	box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+	#controlPanel div {
+		//border: solid 1px teal;
+	}
+
+	#controlPanel table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+		#controlPanel table td {
+			//border: solid 1px orange;
+		}
+
+	#controlPanel #style {
+		margin-bottom: 15px;
+		border-bottom: solid 1px #cccccc;
+	}
+
+		#controlPanel #style table {
+			margin-bottom: 10px;
+		}
+
+		#controlPanel #style #icon td {
+			width: 50%;
+			text-align: center;
+		}
+
+		#controlPanel #style #icon input {
+			margin: 0px;
+			vertical-align: bottom;
+		}
+
+		#controlPanel #style #icon label {
+			font-weight: bolder;
+		}
+
+			#controlPanel #style #icon label span {
+				margin-left: 7px;
+				margin-right: 5px;
+				font-size: 14px;
+				font-weight: normal;
+				color: #565656;
+			}
+
+		#controlPanel #style #variable .label {
+			width: 40px;
+			padding-right: 7px;
+			font-weight: bolder;
+			text-align: right;
+		}
+
+		#controlPanel #style #variable select {
+			width: 100%;
+			padding: 2px 0;
+			font-family: Roboto, Arial, sans-serif;
+			font-size: 11px;
+			font-weight: 400;
+		}
+
+		#controlPanel #style #appearance {
+			text-align: center;
+		}
+
+			#controlPanel #style #appearance .label {
+				font-weight: bolder;
+			}
+
+			#controlPanel #style #appearance .range span {
+				margin: 0 5px;
+				font-size: 14px;
+				font-weight: normal;
+				color: #565656;
+			}
+
+			#controlPanel #style #appearance .range input {
+				width: 100px;
+				vertical-align: middle;
+			}
+
+			#controlPanel #style #appearance .color input {
+				width: 20px;
+				margin: 0 5px;
+			}
+
+	#controlPanel #filter {
+		margin-bottom: 15px;
+		border-bottom: solid 1px #cccccc;
+	}
+
+		#controlPanel #filter table {
+			margin-bottom: 10px;
+		}
+
+		#controlPanel #filter #rangeDate td,
+		#controlPanel #filter #rangeTime td {
+			text-align: center;
+		}
+
+		#controlPanel #filter #rangeDate input[type=text],
+		#controlPanel #filter #rangeTime select {
+			padding: 2px 0;
+			font-family: Consolas, monospace;
+			font-size: 11px;
+			font-weight: 400;
+		}
+
+		#controlPanel #filter #rangeDate input[type=text] {
+			width: 76px;
+			padding-left: 20px;
+		}
+
+		#controlPanel #filter #rangeTime select {
+			width: 98px;
+			// padding-left: 16px;
+			text-indent: 16px;
+		}
+
+		#controlPanel #filter #rangeDate label,
+		#controlPanel #filter #rangeTime label {
+			position: relative;
+		}
+
+			#controlPanel #filter #rangeDate label span,
+			#controlPanel #filter #rangeTime label span {
+				position: absolute;
+				top: -1px;
+				left: 4px;
+				font-size: 14px;
+				color: #565656;
+			}
+
+		#controlPanel #filter #rangeDate .IncExcDate td,
+		#controlPanel #filter #rangeTime .IncExcTime td {
+			padding-top: 5px;
+		}
+
+		/*
+				#controlPanel #filter #rangeDate .IncExcDate .incDate,
+				#controlPanel #filter #rangeTime .IncExcTime .incTime {
+						padding-right: 5px;
+						text-align: right;
+				}
+
+				#controlPanel #filter #rangeDate .IncExcDate .excDate,
+				#controlPanel #filter #rangeTime .IncExcTime .excTime {
+						padding-left: 5px;
+						text-align: left;
+				}
+				*/
+
+		#controlPanel #filter #rangeDate .IncExcDate input,
+		#controlPanel #filter #rangeTime .IncExcTime input {
+			margin: 0px;
+			vertical-align: bottom;
+		}
+
+		#controlPanel #filter #rangeDate .IncExcDate label,
+		#controlPanel #filter #rangeTime .IncExcTime label {
+			padding-left: 2px;
+			//font-weight: bolder;
+		}
+
+		#controlPanel #filter #rangeTime .checkTime td {
+			padding-bottom: 8px;
+			font-weight: bolder;
+			text-align: left;
+		}
+
+		#controlPanel #filter #rangeTime .checkTime input {
+			margin: 0px;
+			vertical-align: bottom;
+		}
+
+		#controlPanel #filter #rangeTime label span,
+		#controlPanel #filter #rangeTime .IncExcTime label {
+			color: graytext;
+		}
+
+		#controlPanel #filter #checkVerbalizationHoliday td {
+			width: 50%;
+		}
+
+		#controlPanel #filter #checkVerbalizationHoliday ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+
+			#controlPanel #filter #checkVerbalizationHoliday ul:before {
+				content: attr(aria-label);
+				font-weight: bolder;
+			}
+
+			#controlPanel #filter #checkVerbalizationHoliday ul li {
+				padding-top: 4px;
+				padding-left: 4px;
+			}
+
+		#controlPanel #filter #checkVerbalizationHoliday input {
+			margin: 0px;
+			vertical-align: bottom;
+		}
+
+		#controlPanel #filter #checkVerbalizationHoliday label {
+			padding-left: 2px;
+		}
+
+	#controlPanel #userSelector {
+		//background-color: #00ff90;
+	}
+
+		#controlPanel #userSelector td {
+			width: 50%;
+		}
+
+		#controlPanel #userSelector input {
+			margin: 0px;
+			vertical-align: bottom;
+		}
+
+		#controlPanel #userSelector label {
+			font-weight: bolder;
+			cursor: pointer;
+		}
+
+			#controlPanel #userSelector label span {
+				margin: 0 5px;
+				font-size: 14px;
+				font-weight: normal;
+				color: #565656;
+			}
+
+	#controlPanel #statistics {
+	}
+
+		#controlPanel #statistics table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+			#controlPanel #statistics table td {
+				padding: 4px 0;
+				//border: solid 1px red;
+			}
+
+				#controlPanel #statistics table td.label {
+					width: 33%;
+					font-weight: bolder;
+				}
+
+				#controlPanel #statistics table td.value {
+					width: 16%;
+					text-align: right;
+				}
+
+				#controlPanel #statistics table td.sep {
+					width: 9%;
+					text-align: center;
+				}
+
+				#controlPanel #statistics table td.max {
+					width: 16%;
+					text-align: right;
+				}
+
+				#controlPanel #statistics table td.pct {
+					width: 28%;
+					text-align: right;
+				}
+
+			#controlPanel #statistics table tr:first-child td {
+				padding-top: 0;
+			}
+
+			#controlPanel #statistics table tr:last-child td {
+				padding-bottom: 0;
+			}
+
+/* infowindow */
+
+#infowindowContent {
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 400;
+}
+
+#ip_address, #information, #session, #user {
+	width: 100%;
+}
+
+#ip_address {
+	empty-cells: hide;
+}
+
+	#ip_address td {
+		width: 16.666666%;
+		border: solid 1px #cccccc;
+		text-align: center;
+		text-transform: capitalize;
+	}
+
+		#ip_address td:hover:not(.selected) {
+			background-color: rgba(187, 222, 251, 0.8);
+			border-color: #90caf9;
+			cursor: pointer;
+		}
+
+		#ip_address td.selected {
+			background-color: #eeeeee;
+			font-weight: bolder;
+			//cursor: auto;
+		}
+
+		#ip_address td.space {
+			border: none;
+			cursor: auto;
+		}
+
+			#ip_address td.space:hover {
+				background-color: white;
+			}
+
+	#ip_address .byte {
+		display: block;
+		float: left;
+		width: 20.5%;
+		text-transform: lowercase;
+		//background-color: orange;
+	}
+
+	#ip_address .point {
+		display: block;
+		float: left;
+		width: 6%;
+		//background-color: teal;
+	}
+
+
+#information {
+}
+
+	#information .label {
+		font-weight: 500;
+	}
+
+
+#infowindowContent .container {
+	max-height: 256px;
+	border: solid 1px #cccccc;
+	overflow: auto;
+}
+
+/* sessions table */
+
+#infowindowSessions {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	#infowindowSessions tr:nth-child(even) {
+		//background: #eeeeee;
+	}
+
+	#infowindowSessions th {
+		padding: 5px;
+		background-color: #dddddd;
+		border-bottom: solid 1px #cccccc;
+		white-space: nowrap;
+	}
+
+		#infowindowSessions th.ip_address {
+			display: block;
+			width: 100px;
+			border-bottom: none;
+		}
+
+	#infowindowSessions td {
+		border-top: solid 1px #cccccc;
+		padding: 5px;
+		font-family: Consolas, monospace;
+		text-align: center;
+		white-space: nowrap;
+	}
+
+		#infowindowSessions td.ip_address .byte {
+			display: block;
+			float: left;
+			width: 20.5%;
+			//background-color: orange;
+		}
+
+		#infowindowSessions td.ip_address .point {
+			display: block;
+			float: left;
+			width: 6%;
+			//background-color: teal;
+		}
+
+		#infowindowSessions td.ua_slim_id {
+			text-align: right;
+		}
+
+		#infowindowSessions td.ua_slim_string {
+			text-align: left;
+		}
+
+	#infowindowSessions tr:hover td {
+		background-color: rgba(187, 222, 251, 0.8);
+		border-color: #90caf9;
+	}
+
+	#infowindowSessions tr:first-child:hover td.ip_address {
+		border-color: #cccccc;
+	}
+
+/* users table */
+
+#infowindowUsers {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	#infowindowUsers tr:nth-child(even) {
+		//background: #eeeeee;
+	}
+
+	#infowindowUsers th {
+		padding: 5px;
+		background-color: #dddddd;
+		border-bottom: solid 1px #cccccc;
+		white-space: nowrap;
+	}
+
+	#infowindowUsers td {
+		padding: 5px;
+		border-top: solid 1px #cccccc;
+		white-space: nowrap;
+	}
+
+		#infowindowUsers td.user_id,
+		#infowindowUsers td.role_id,
+		#infowindowUsers td.department_id,
+		#infowindowUsers td.structured {
+			text-align: center;
+		}
+
+	#infowindowUsers tr:hover td {
+		background-color: rgba(187, 222, 251, 0.8);
+		border-color: #90caf9;
+	}
+
+
+/*user selector window */
+
+#userSelectorWindow {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-top: 10px;
+	margin-right: 50px;
+	padding: 8px;
+	z-index: 5;
+	background-color: #ffffff;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 400;
+	border-radius: 3px;
+	box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+	#userSelectorWindow > div {
+		//border: solid 1px red;
+	}
+
+	#userSelectorWindow .contentHead {
+		height: 34px;
+	}
+
+		#userSelectorWindow .contentHead table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+			#userSelectorWindow .contentHead table td {
+				//border: solid 1px blue;
+				vertical-align: top;
+			}
+
+#uswTitle h1 {
+	margin: 0;
+}
+
+#uswCloseButton {
+	width: 20px;
+	text-align: right;
+}
+
+	#uswCloseButton span {
+		font-size: 14px;
+		color: #cccccc;
+		cursor: pointer;
+	}
+
+		#uswCloseButton span:hover {
+			color: #888888;
+		}
+
+#userSelectorWindow .contentBody {
+}
+
+/*
+#rangeUserContainer {
+	height: 119px;
+	background-color: #eeeeee;
+	padding: 5px;
+	margin-bottom: 8px;
+	border: solid 1px #cccccc;
+	border-radius: 3px;
+}
+
+#rangeUser {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	#rangeUser td {
+		padding: 0;
+		vertical-align: top;
+		//border: solid 1px yellow;
+	}
+
+	#rangeUser .selectRole,
+	#rangeUser .selectDepartment {
+		width: 30%;
+	}
+
+	#rangeUser .alertRange {
+		width: 33%;
+	}
+
+	#rangeUser .selectRole {
+		padding-right: 5px;
+	}
+
+	#rangeUser .selectDepartment {
+		//padding-left: 5px;
+		padding: 0 5px;
+	}
+
+	#rangeUser .radioStructured {
+		width: 7%;
+		padding-left: 5px;
+	}
+
+	#rangeUser .label {
+		padding-bottom: 4px;
+	}
+
+		#rangeUser .label label {
+			font-weight: bolder;
+		}
+
+		#rangeUser .label .selectResetButton {
+			margin-left: 10px;
+			cursor: pointer;
+			color: #565656;
+		}
+
+			#rangeUser .label .selectResetButton:hover {
+				color: #000000;
+			}
+
+		#rangeUser .label .alertCheckButton {
+			margin-left: 10px;
+			cursor: pointer;
+			color: #565656;
+		}
+
+			#rangeUser .label .alertCheckButton:hover {
+				color: #000000;
+			}
+
+		#rangeUser .label .alertHighlightMode {
+			margin-left: 10px;
+			color: #565656;
+		}
+
+		#rangeUser .label input {
+			margin: 0px;
+			margin-left: 4px;
+			margin-right: 2px;
+			vertical-align: bottom;
+		}
+
+		#rangeUser .label label[for] {
+			font-weight: normal;
+		}
+
+	#rangeUser select {
+		width: 100%;
+		height: 102px;
+		font-family: Roboto, Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 400;
+		border: solid 1px #cccccc;
+	}
+
+	#rangeUser option {
+		white-space: normal;
+		border-right: solid 1px #cccccc;
+	}
+
+	#rangeUser .radioStructured ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+		#rangeUser .radioStructured ul li {
+			padding-top: 4px;
+			//padding-left: 4px;
+		}
+
+			#rangeUser .radioStructured ul li input {
+				margin: 0px;
+				vertical-align: bottom;
+			}
+
+			#rangeUser .radioStructured ul li label {
+				padding-left: 2px;
+			}
+
+	#rangeUser .alertRange .container {
+		height: 100px;
+		border: solid 1px #cccccc;
+		overflow-y: scroll;
+		background-color: #ffffff;
+	}
+
+	#rangeUser .alertRange table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	#rangeUser .alertRange .container > table {
+		border-right: solid 1px #cccccc;
+	}
+
+	#rangeUser .alertRange th,
+	#rangeUser .alertRange td {
+		//border: solid 1px orange;
+		vertical-align: middle;
+	}
+
+	#rangeUser .alertRange table:first-child th {
+		padding: 1px 2px;
+		padding-top: 2px;
+		background-color: #dddddd;
+	}
+
+	#rangeUser .alertRange table:first-child th.checkAll input {
+		margin: 0;
+    vertical-align: middle;
+	}
+
+	#rangeUser .alertRange table:first-child th.key {
+		padding: 0 2px;
+		background-color: #dddddd;
+	}
+
+	#rangeUser .alertRange table:first-child td:not(.check) {
+		//text-align: right;
+	}
+
+	#rangeUser .alertRange table:first-child td.col {
+		padding-right: 4px;
+		font-weight: bolder;
+		white-space: nowrap;
+	}
+
+	#rangeUser .alertRange tr.stats {
+		border-top: solid 1px #cccccc;
+	}
+
+		#rangeUser .alertRange tr.stats td.value {
+			padding: 2px;
+			padding-top: 4px;
+			border-bottom: solid 1px #dddddd;
+			text-align: center;
+		}
+
+	#rangeUser .alertRange tr.range table td {
+		//border: solid 1px purple;
+	}
+
+		#rangeUser .alertRange tr.range table td.minRange,
+		#rangeUser .alertRange tr.range table td.maxRange {
+			width: 22px;
+			padding-top: 2px;
+			color: #888888;
+		}
+
+		#rangeUser .alertRange tr.range table td.minRange {
+			text-align: right;
+		}
+
+		#rangeUser .alertRange tr.range table td.slider {
+			padding-top: 5px;
+			padding-bottom: 4px;
+			padding-left: 10px;
+			padding-right: 12px;
+		}
+
+		#rangeUser .alertRange tr.range table td.maxRange {
+			text-align: left;
+		}
+
+		#rangeUser .alertRange tr.unchecked td.col,
+		#rangeUser .alertRange tr.unchecked td.value,
+		#rangeUser .alertRange tr.unchecked td.minRange,
+		#rangeUser .alertRange tr.unchecked td.maxRange {
+			opacity: 0.5;
+		}
+
+		#rangeUser .alertRange tr.unchecked > td input,
+		#rangeUser .alertRange tr.unchecked > td.slider div {
+			//opacity: 1;
+		}
+
+		*/
+
+#userSelectorWindow .contentBody .tableContainer {
+	//height: 100%;
+	//padding: 0 1px;
+	border: solid 1px #cccccc;
+	overflow-y: scroll;
+}
+
+#userSelectorTable {
+	width: 100%;
+	border-collapse: collapse;
+	border-right: solid 1px #cccccc;
+}
+
+	#userSelectorTable tbody tr.checked {
+		background: #eeeeee;
+	}
+
+	#userSelectorTable tbody tr.hidden {
+		display: none;
+	}
+
+	#userSelectorTable thead tr {
+		border-bottom: solid 1px #cccccc;
+	}
+
+	#userSelectorTable th {
+		padding: 3px 2px;
+		background-color: #dddddd;
+		// border-bottom: solid 1px #cccccc;
+		// border: solid 1px orange;
+		white-space: nowrap;
+		color: #565656;
+		cursor: default;
+	}
+
+		#userSelectorTable th.rowNumber {
+			text-align: right;
+		}
+
+		#userSelectorTable th.rowNumber,
+		#userSelectorTable th.checkAll,
+		#userSelectorTable th.user_id,
+		#userSelectorTable th.role_id,
+		#userSelectorTable th.department_id,
+		#userSelectorTable th.structured {
+			// background-color: #ffffff;
+		}
+
+		#userSelectorTable .structured {
+			// border-right: dashed 1px #cccccc;
+		}
+
+		#userSelectorTable .session {
+			border-left: dashed 1px #cccccc;
+		}
+
+
+		/*
+		#userSelectorTable th.session:after,
+		#userSelectorTable th.verbalization:after,
+		#userSelectorTable th.verbalization_pct:after,
+		#userSelectorTable th.ip_address:after,
+		#userSelectorTable th.ua_slim:after,
+		#userSelectorTable th.pair_ip_ua:after,
+		#userSelectorTable th.country:after,
+		#userSelectorTable th.italy:after,
+		#userSelectorTable th.italy_pct:after,
+		#userSelectorTable th.region:after,
+		#userSelectorTable th.fvg:after,
+		#userSelectorTable th.fvg_pct:after,
+		#userSelectorTable th.holiday:after,
+		#userSelectorTable th.holiday_pct:after,
+		#userSelectorTable th.mean_duration:after {
+			font-family: FontAwesome;
+			content: "\00A0\f0dc";
+			color: rgba(0, 0, 0, 0.2);
+			// color: #dddddd;
+		}
+		*/
+
+		/*
+		#userSelectorTable th.sortAsc,
+		#userSelectorTable th.sortDesc {
+			color: black;
+		}
+
+			#userSelectorTable th.sortAsc:before,
+			#userSelectorTable th.sortDesc:before {
+				font-family: FontAwesome;
+				color: #E91E63;
+			}
+
+			#userSelectorTable th.sortAsc:before {
+				content: "\f0de\00A0";
+			}
+
+			#userSelectorTable th.sortDesc:before {
+				content: "\f0dd\00A0";
+			}
+			*/
+
+
+		#userSelectorTable th:not(.rowNumber):not(.checkAll):not(.sortAsc):not(.sortDesc):not(.alert):before {
+			font-family: FontAwesome;
+			color: #dddddd;
+			content: "\f0dc\00A0";
+		}
+
+		#userSelectorTable th:not(.rowNumber):not(.checkAll):not(.alert):after {
+			font-family: FontAwesome;
+			color: #dddddd;
+			content: "\00A0\f0dc";
+		}
+
+		#userSelectorTable th:not(.sortAsc):not(.sortDesc).alert:before {
+			font-family: FontAwesome;
+			color: #cccccc;
+			content: "\f0dc\00A0";
+		}
+
+		#userSelectorTable th.alert:after {
+			font-family: FontAwesome;
+			color: #cccccc;
+			content: "\00A0\f0dc";
+		}
+
+		#userSelectorTable th.sortAsc,
+		#userSelectorTable th.sortDesc {
+			color: black;
+		}
+
+		#userSelectorTable th.sortAsc:before {
+			font-family: FontAwesome;
+			color: #E91E63;
+			content: "\f0de\00A0";
+		}
+
+		#userSelectorTable th.sortDesc:before {
+			font-family: FontAwesome;
+			color: #E91E63;
+			content: "\f0dd\00A0";
+		}
+
+	
+	#userSelectorTable tbody tr {
+		border-bottom: solid 1px #cccccc;
+	}
+	
+	#userSelectorTable tbody tr:not(.hidden):last-child {
+		border-bottom: none;
+	}
+
+	#userSelectorTable td {
+		/*
+		border-top: solid 1px #cccccc;
+		border-bottom: solid 1px #cccccc;
+		*/
+		padding: 2px;
+		text-align: right;
+		//border: solid 1px orange;
+		white-space: nowrap;
+	}
+
+	/*
+	#userSelectorTable tbody tr:not(.hidden):first-child td {
+		border-top: none;
+	}
+	*/
+
+		#userSelectorTable td.rowNumber {
+			color: #565656;
+		}
+
+		#userSelectorTable td.checkUser,
+		#userSelectorTable td.user_id,
+		#userSelectorTable td.role_id,
+		#userSelectorTable td.department_id,
+		#userSelectorTable td.structured {
+			text-align: center;
+		}
+
+		#userSelectorTable td.mean_duration {
+			//padding-right: 5px;
+		}
+
+
+		/* tr hover */
+
+	#userSelectorTable tr:hover td {
+		//background-color: #bbdefb;
+		//opacity: 0.8;
+		background-color: rgba(187, 222, 251, 0.5);
+		// border-color: #90caf9;
+	}
+
+
+
+	/* alert */
+
+	#userSelectorTable tbody.userAlertRadioOr td.alert,
+	#userSelectorTable tbody.userAlertRadioAnd tr.alert {
+		background-color: #EEFF41;
+	}
+
+	#userSelectorTable tbody.userAlertRadioOr tr:hover td.alert {
+		background-color: #c4e4d5;
+	}
+
+	#userSelectorTable th.alert {
+		background-color: #cccccc;
+	}
+
+
+
+
+/* ******************** */
+
+	#userSelectorControlPanel {
+		width: 100%;
+		height: 140px;
+		margin-bottom: 8px;
+		border-collapse: collapse;
+	}
+
+		#userSelectorControlPanel td {
+			// border: solid 1px yellow;
+		}
+
+		#userSelectorControlPanel .filter {
+			vertical-align: top;
+		}
+
+		#userSelectorControlPanel .alert {
+			width: 350px;
+			vertical-align: top;
+		}
+
+		#userAlert {
+			border: solid 1px #cccccc;
+			border-radius: 3px;
+		}
+
+		#userAlert .head {
+			background-color: #dddddd;
+		}
+
+		#userAlert .head table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		#userAlert .head table td {
+			border-bottom: solid 1px #cccccc;
+			// vertical-align: bottom;
+		}
+
+		#userAlert .head table td.title {
+			width: 34px;
+			padding-left: 5px;
+			font-weight: bolder;
+		}
+
+		#userAlert .head table td.button {
+			font-size: 14px;
+			font-weight: normal;
+			// color: #565656;
+			color: #888888;
+		}
+
+		#userAlert .head table td.button span {
+			margin-right: 7px;
+			cursor: pointer;
+		}
+
+		#userAlert .head table td.button span.checked {
+			color: #E91E63;
+		}
+
+		#userAlert .head table td.button span:not(.checked):hover {
+			color: black;
+		}
+
+		#userAlert .head table td.radio {
+			width: 90px;
+			padding-right: 5px;
+			text-align: right;
+		}
+
+		#userAlert .head table td.radio input {
+			// margin: 0;
+			vertical-align: bottom;
+		}
+
+		#userAlert .head table td.radio label {
+		}
+
+		#userAlert .body {
+			height: 111px;
+			overflow-y: scroll;
+		}
+
+		#userAlert .body table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		#userAlert .body table tr {
+			color: gray;
+		}
+
+		#userAlert .body table tr:not(:first-child) {
+			border-top: dashed 1px #cccccc;
+		}
+
+		#userAlert .body table td {
+			padding: 4px 0;
+			// border: solid 1px magenta;
+		}
+
+		#userAlert .body table .check {
+			width: 10px;
+		}
+
+		#userAlert .body table .stat {
+			width: 50px;
+			font-weight: bolder;
+		}
+
+		#userAlert .body table .minPct,
+		#userAlert .body table .maxPct {
+			width: 30px;
+			padding-right: 5px;
+			text-align: right;
+		}
+
+		#userAlert .body table .slider {
+			padding: 0;
+			padding-top: 2px;
+			padding-left: 6px;
+			padding-right: 8px;
+		}
+
+		#userAlert .body table .IncExc {
+			width: 40px;
+			border-right: solid 1px #cccccc;
+			text-align: left;
+		}
+
+		#userAlert .body table .IncExc select {
+			font-family: 'Roboto Mono', monospace;
+			font-size: 11px;
+		}
+
+		/* user filter */
+
+		#userFilter {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		#userFilter th {
+			// border: solid 1px magenta;
+			text-align: left;
+			padding-right: 5px;
+			vertical-align: bottom;
+		}
+
+		#userFilter th:last-child {
+			padding-right: 20px;
+		}
+
+		#userFilter th span {
+			margin-left: 7px;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: normal;
+			color: #888888;
+		}
+
+		#userFilter th span:hover {
+			color: black;
+		}
+
+		#userFilter td {
+			// border: solid 1px magenta;
+			padding: 0;
+			padding-right: 10px;
+		}
+
+		#userFilter td:last-child {
+			padding-right: 20px;
+		}
+
+		#userFilter .role,
+		#userFilter .department {
+			width: 40%;
+		}
+
+		#userFilter .structured {
+			width: 20%;
+		}
+
+		#userFilter td.structured {
+			vertical-align: top;
+		}
+
+	#userFilter select {
+		width: 100%;
+		height: 116px;
+		font-family: Roboto, Arial, sans-serif;
+		font-size: 11px;
+		font-weight: 400;
+		border: solid 1px #cccccc;
+	}
+
+	#userFilter select option {
+		white-space: normal;
+		border-right: solid 1px #cccccc;
+		color: #595959;
+	}
+
+	#userFilter select option:before {
+		margin-right: 2px;
+		font-family: "Roboto Mono", Consolas, monospace;
+		// color: #E91E63;
+		color: black;
+		content: attr(index);
+	}
+
+	#userFilter ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+		#userFilter ul li {
+			padding-top: 4px;
+			// padding-left: 4px;
+		}
+
+			#userFilter ul li input {
+				margin: 0px;
+				vertical-align: bottom;
+			}
+
+			#userFilter ul li label {
+				padding-left: 2px;
+			}
+
+/* fixed header */
+
+	#userSelectorTable .fixedHeader {
+		// position: fixed;
+	}
